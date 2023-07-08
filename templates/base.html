@@ -12,9 +12,26 @@
             <label for="title">Todo Title </label>
             <input type="text" name="title" placeholder="Enter Todo Item... ">
             <br>
-            <button type="submit">add item</button>
-        
+            <button type="submit">add item</button>        
         </div>
     </form>
+
+    {%for item in todo_list %}
+        <p>
+            {{ item.id}} | {{ item.title }}
+        </p>
+
+        {% if item.is_completed %}
+            <span>Completed</span>
+        {% else %}
+            <span>Not Completed</span>
+        {% endif %}
+
+        <a href="/">update</a>
+        <a href="/">delete</a>
+
+    {% endfor %}
+
+
 </body>
 </html>
