@@ -37,6 +37,13 @@ def update(todo_item_id):
     db.session.commit()
     return redirect(url_for("index"))
 
+@app.route('/delete/<int:todo_item_id>')
+def delete(todo_item_id):
+    todo_item = Todo.query.filter_by(id=todo_item_id).first()
+    db.session.delete(todo_item)
+    db.session.commit()
+    return redirect(url_for("index"))
+
 if __name__ == "__main__":
     app.app_context().push()
     db.create_all()
