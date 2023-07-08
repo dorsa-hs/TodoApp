@@ -30,6 +30,13 @@ def add():
     db.session.commit()
     return redirect(url_for("index"))
 
+@app.route('/update/<int:todo_item_id>')
+def update(todo_item_id):
+    todo_item = Todo.query.filter_by(id=todo_item_id).first()
+    todo_item.is_completed = not todo_item.is_completed
+    db.session.commit()
+    return redirect(url_for("index"))
+
 if __name__ == "__main__":
     app.app_context().push()
     db.create_all()
